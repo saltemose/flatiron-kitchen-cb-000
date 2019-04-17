@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+    @recipe = Recipe.find(params[:id])
   end
 
   # GET /recipes/new
@@ -26,7 +27,6 @@ class RecipesController < ApplicationController
   # POST /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.save
 
     respond_to do |format|
       if @recipe.save
@@ -37,6 +37,7 @@ class RecipesController < ApplicationController
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
+        @recipe.save
   end
 
   # PATCH/PUT /recipes/1
